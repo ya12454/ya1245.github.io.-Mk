@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MK ROBES KABYLE | Boutique</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #c9a35b;
+      --gold-light: #e7c77f;
+      --black: #050505;
+      --dark: #0c0c0c;
+      --white: #f5f2eb;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .topbar {
+      text-align: center;
+      padding: 10px;
+      color: var(--gold-light);
+      border-bottom: 1px solid #332919;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* MENU */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.97);
+      border-bottom: 1px solid #332919;
+    }
+
+    nav {
+      max-width: 1250px;
+      margin: auto;
+      min-height: 85px;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-align: center;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .logo-mk {
+      display: block;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .logo-name {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .cart-btn {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ACCUEIL */
+
+    .hero {
+      min-height: 600px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .hero-content {
+      padding: 90px 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: radial-gradient(circle, #18120b, #050505 70%);
+    }
+
+    .hero-small {
+      color: var(--gold);
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: 65px;
+      color: var(--gold-light);
+      font-weight: normal;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 22px;
+      letter-spacing: 7px;
+      margin-top: 15px;
+    }
+
+    .hero p {
+      color: #bbb;
+      line-height: 1.8;
+      margin: 25px 0;
+    }
+
+    .gold-line {
+      width: 160px;
+      height: 1px;
+      background: var(--gold);
+      margin: 20px 0;
+    }
+
+    .hero-image {
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75);
+    }
+
+    .btn {
+      width: fit-content;
+      padding: 15px 25px;
+      background: linear-gradient(135deg, #a77d37, #e0bd70);
+      color: #050505;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* PRODUITS */
+
+    .section {
+      max-width: 1300px;
+      margin: auto;
+      padding: 80px 30px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title p {
+      color: var(--gold);
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      color: var(--gold-light);
+      font-size: 45px;
+      font-weight: normal;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: var(--dark);
+      border: 1px solid #332919;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+    }
+
+    .product-image {
+      height: 430px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .promo {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--gold);
+      color: black;
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .product-info {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      color: var(--gold-light);
+      font-size: 21px;
+      font-weight: normal;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      font-size: 19px;
+      margin-bottom: 20px;
+    }
+
+    .old-price {
+      color: #777;
+      text-decoration: line-through;
+      margin-right: 8px;
+    }
+
+    .new-price {
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    .add-cart {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* PANIER */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: min(430px, 100%);
+      height: 100vh;
+      background: #0b0b0b;
+      z-index: 2000;
+      padding: 25px;
+      border-left: 1px solid var(--gold);
+      transition: 0.4s;
+      overflow-y: auto;
+    }
+
+    .cart-panel.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #332919;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h2 {
+      color: var(--gold-light);
+      font-weight: normal;
+    }
+
+    .close-cart,
+    .close-order {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 65px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #222;
+    }
+
+    .cart-item img {
+      width: 65px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .cart-item h4 {
+      color: white;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .cart-item p {
+      color: var(--gold-light);
+      font-size: 13px;
+    }
+
+    .remove {
+      background: none;
+      border: none;
+      color: #e07a7a;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .cart-total {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      color: var(--gold-light);
+      font-size: 18px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--gold);
+      color: black;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px 0;
+      color: #777;
+    }
+
+    /* FORMULAIRE DE COMMANDE */
+
+    .order-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .order-modal.active {
+      display: flex;
+    }
+
+    .order-box {
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #0b0b0b;
+      border: 1px solid var(--gold);
+      padding: 30px;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #332919;
+      margin-bottom: 25px;
+    }
+
+    .order-header small {
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .order-header h2 {
+      color: var(--gold-light);
+      margin-top: 8px;
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      background: #151515;
+      border: 1px solid #333;
+      color: white;
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .order-summary {
+      margin-top: 25px;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #332919;
+    }
+
+    .order-summary h3 {
+      color: var(--gold-light);
+      font-weight: normal;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .order-product {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #252525;
+      color: #ddd;
+    }
+
+    .order-final-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      color: var(--gold-light);
+      border-top: 1px solid var(--gold);
+    }
+
+    .confirm-order {
+      width: 100%;
+      margin-top: 20px;
+      padding: 17px;
+      background: linear-gradient(135deg, #a77d37, #e0bd70);
+      border: none;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      text-align: center;
+      padding: 80px 20px;
+      border-top: 1px solid #332919;
+    }
+
+    .contact h2 {
+      color: var(--gold-light);
+      font-size: 40px;
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      border-top: 1px solid #222;
+      font-size: 12px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 28px;
+      z-index: 100;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 450px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 520px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 85px;
+        left: 0;
+        width: 100%;
+        background: #080808;
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      nav {
+        padding: 10px 15px;
+      }
+
+      .cart-btn {
+        font-size: 10px;
+        padding: 9px;
+      }
+
+      .logo-mk {
+        font-size: 32px;
+      }
+
+      .hero-content {
+        padding: 60px 25px;
+      }
+
+      .product-image {
+        height: 450px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .order-box {
+        padding: 20px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    MK ROBES KABYLE — L'ÉLÉGANCE DE LA TRADITION
+  </div>
+
+  <header>
+    <nav>
+
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#accueil">ACCUEIL</a>
+        <a href="#boutique">NOS ROBES</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+
+      <a href="#accueil" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-name">ROBES KABYLE</span>
+      </a>
+
+      <button class="cart-btn" onclick="openCart()">
+        🛒 PANIER (<span id="cartCount">0</span>)
+      </button>
+
+    </nav>
+  </header>
+
+
+  <section class="hero" id="accueil">
+
+    <div class="hero-content">
+
+      <div class="hero-small">
+        ✦ COLLECTION TRADITIONNELLE ✦
+      </div>
+
+      <h1>
+        MK
+        <span>ROBES KABYLE</span>
+      </h1>
+
+      <div class="gold-line"></div>
+
+      <p>
+        Découvrez notre collection de robes kabyles élégantes,
+        inspirées de la tradition et conçues pour sublimer votre beauté.
+      </p>
+
+      <a href="#boutique" class="btn">
+        DÉCOUVRIR LA COLLECTION
+      </a>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg" alt="MK Robes Kabyle">
+    </div>
+
+  </section>
+
+
+  <section class="section" id="boutique">
+
+    <div class="section-title">
+      <p>MK ROBES KABYLE</p>
+      <h2>NOS ROBES</h2>
+    </div>
+
+    <div class="products">
+
+
+      <!-- PRODUIT 1 -->
+
+      <article class="product">
+
+        <div class="product-image">
+          <img src="https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg" alt="Robe Kabyle">
+        </div>
+
+        <div class="product-info">
+
+          <h3>ROBE KABYLE</h3>
+
+          <div class="price">
+            6 900 DA
+          </div>
+
+          <button class="add-cart"
+            onclick="addToCart('Robe Kabyle', 6900, 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg')">
+            🛒 AJOUTER AU PANIER
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUIT 2 -->
+
+      <article class="product">
+
+        <div class="product-image">
+          <img src="https://i.ibb.co/Ld9s9YYP/Messenger-creation-1749773962810621.jpg" alt="Robe Kabyle">
+        </div>
+
+        <div class="product-info">
+
+          <h3>ROBE KABYLE</h3>
+
+          <div class="price">
+            6 900 DA
+          </div>
+
+          <button class="add-cart"
+            onclick="addToCart('Robe Kabyle 2', 6900, 'https://i.ibb.co/Ld9s9YYP/Messenger-creation-1749773962810621.jpg')">
+            🛒 AJOUTER AU PANIER
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUIT 3 -->
+
+      <article class="product">
+
+        <div class="product-image">
+
+          <div class="promo">
+            PROMOTION
+          </div>
+
+          <img src="https://i.ibb.co/S7GP4tbV/Messenger-creation-3229412453925610.jpg" alt="Robe Kabyle Promotion">
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>ROBE KABYLE PREMIUM</h3>
+
+          <div class="price">
+            <span class="old-price">15 000 DA</span>
+            <span class="new-price">13 000 DA</span>
+          </div>
+
+          <button class="add-cart"
+            onclick="addToCart('Robe Kabyle Premium', 13000, 'https://i.ibb.co/S7GP4tbV/Messenger-creation-3229412453925610.jpg')">
+            🛒 AJOUTER AU PANIER
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <h2>CONTACTEZ-NOUS</h2>
+
+    <p>
+      Commandez facilement vos robes directement via WhatsApp.
+    </p>
+
+    <a href="https://wa.me/213794020017"
+       class="btn"
+       target="_blank">
+      💬 CONTACTER SUR WHATSAPP
+    </a>
+
+  </section>
+
+
+  <footer>
+    © 2026 MK ROBES KABYLE — Tous droits réservés
+  </footer>
+
+
+  <!-- FOND PANIER -->
+
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+
+  <!-- PANIER -->
+
+  <div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+      <h2>MON PANIER</h2>
+
+      <button class="close-cart" onclick="closeCart()">×</button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+
+      <strong>TOTAL :</strong>
+
+      <strong id="cartTotal">0 DA</strong>
+
+    </div>
+
+    <button class="checkout-btn" onclick="orderWhatsApp()">
+      FINALISER MA COMMANDE
+    </button>
+
+  </div>
+
+
+  <!-- FORMULAIRE COMMANDE -->
+
+  <div class="order-modal" id="orderModal">
+
+    <div class="order-box">
+
+      <div class="order-header">
+
+        <div>
+          <small>MK ROBES KABYLE</small>
+          <h2>FINALISER MA COMMANDE</h2>
+        </div>
+
+        <button class="close-order" onclick="closeOrderForm()">
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="orderForm">
+
+        <div class="form-group">
+
+          <label>Nom et prénom *</label>
+
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Votre nom complet"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Numéro de téléphone *</label>
+
+          <input
+            type="tel"
+            id="customerPhone"
+            placeholder="0555 12 34 56"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Wilaya *</label>
+
+          <select id="customerWilaya" required>
+
+            <option value="">Sélectionnez votre wilaya</option>
+
+            <option>Adrar</option>
+            <option>Chlef</option>
+            <option>Laghouat</option>
+            <option>Oum El Bouaghi</option>
+            <option>Batna</option>
+            <option>Béjaïa</option>
+            <option>Biskra</option>
+            <option>Béchar</option>
+            <option>Blida</option>
+            <option>Bouira</option>
+            <option>Tamanrasset</option>
+            <option>Tébessa</option>
+            <option>Tlemcen</option>
+            <option>Tiaret</option>
+            <option>Tizi Ouzou</option>
+            <option>Alger</option>
+            <option>Djelfa</option>
+            <option>Jijel</option>
+            <option>Sétif</option>
+            <option>Saïda</option>
+            <option>Skikda</option>
+            <option>Sidi Bel Abbès</option>
+            <option>Annaba</option>
+            <option>Guelma</option>
+            <option>Constantine</option>
+            <option>Médéa</option>
+            <option>Mostaganem</option>
+            <option>M'Sila</option>
+            <option>Mascara</option>
+            <option>Ouargla</option>
+            <option>Oran</option>
+            <option>El Bayadh</option>
+            <option>Illizi</option>
+            <option>Bordj Bou Arreridj</option>
+            <option>Boumerdès</option>
+            <option>El Tarf</option>
+            <option>Tindouf</option>
+            <option>Tissemsilt</option>
+            <option>El Oued</option>
+            <option>Khenchela</option>
+            <option>Souk Ahras</option>
+            <option>Tipaza</option>
+            <option>Mila</option>
+            <option>Aïn Defla</option>
+            <option>Naâma</option>
+            <option>Aïn Témouchent</option>
+            <option>Ghardaïa</option>
+            <option>Relizane</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Adresse de livraison *</label>
+
+          <textarea
+            id="customerAddress"
+            placeholder="Commune, quartier, rue..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Informations supplémentaires</label>
+
+          <textarea
+            id="customerNote"
+            placeholder="Exemple : taille souhaitée..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="order-summary">
+
+          <h3>RÉSUMÉ DE LA COMMANDE</h3>
+
+          <div id="orderProducts"></div>
+
+          <div class="order-final-total">
+
+            <span>TOTAL</span>
+
+            <strong id="orderTotal">0 DA</strong>
+
+          </div>
+
+        </div>
+
+
+        <button type="submit" class="confirm-order">
+          CONFIRMER LA COMMANDE 💬
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- WHATSAPP FLOTTANT -->
+
+  <a href="https://wa.me/213794020017"
+     class="whatsapp-float"
+     target="_blank">
+    💬
+  </a>
+
+
+  <script>
+
+    /* ============================
+       PANIER
+    ============================ */
+
+    let cart = [];
+
+
+    function toggleMenu() {
+
+      document
+        .getElementById("navLinks")
+        .classList.toggle("active");
+
+    }
+
+
+    function addToCart(name, price, image) {
+
+      const existing = cart.find(
+        item => item.name === name
+      );
+
+
+      if (existing) {
+
+        existing.quantity++;
+
+      } else {
+
+        cart.push({
+
+          name: name,
+          price: price,
+          image: image,
+          quantity: 1
+
+        });
+
+      }
+
+
+      updateCart();
+
+      openCart();
+
+    }
+
+
+    function removeFromCart(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    function updateCart() {
+
+      const cartItems =
+        document.getElementById("cartItems");
+
+      const cartCount =
+        document.getElementById("cartCount");
+
+      const cartTotal =
+        document.getElementById("cartTotal");
+
+
+      cartItems.innerHTML = "";
+
+      let total = 0;
+      let count = 0;
+
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML =
+          '<div class="empty-cart">Votre panier est vide 🛒</div>';
+
+      }
+
+
+      cart.forEach((item, index) => {
+
+        const itemTotal =
+          item.price * item.quantity;
+
+
+        total += itemTotal;
+
+        count += item.quantity;
+
+
+        cartItems.innerHTML += `
+
+          <div class="cart-item">
+
+            <img
+              src="${item.image}"
+              alt="${item.name}"
+            >
+
+            <div>
+
+              <h4>${item.name}</h4>
+
+              <p>
+                ${item.price.toLocaleString("fr-FR")}
+                DA × ${item.quantity}
+              </p>
+
+            </div>
+
+            <button
+              class="remove"
+              onclick="removeFromCart(${index})"
+            >
+              Supprimer
+            </button>
+
+          </div>
+
+        `;
+
+      });
+
+
+      cartCount.textContent = count;
+
+
+      cartTotal.textContent =
+        total.toLocaleString("fr-FR") + " DA";
+
+    }
+
+
+    function openCart() {
+
+      document
+        .getElementById("cartPanel")
+        .classList.add("active");
+
+
+      document
+        .getElementById("overlay")
+        .classList.add("active");
+
+    }
+
+
+    function closeCart() {
+
+      document
+        .getElementById("cartPanel")
+        .classList.remove("active");
+
+
+      document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+    }
+
+
+    /* ============================
+       OUVRIR FORMULAIRE
+    ============================ */
+
+    function orderWhatsApp() {
+
+      if (cart.length === 0) {
+
+        alert("Votre panier est vide.");
+
+        return;
+
+      }
+
+
+      closeCart();
+
+      openOrderForm();
+
+    }
+
+
+    function openOrderForm() {
+
+      const orderModal =
+        document.getElementById("orderModal");
+
+
+      const orderProducts =
+        document.getElementById("orderProducts");
+
+
+      const orderTotal =
+        document.getElementById("orderTotal");
+
+
+      orderProducts.innerHTML = "";
+
+
+      let total = 0;
+
+
+      cart.forEach(item => {
+
+        const productTotal =
+          item.price * item.quantity;
+
+
+        total += productTotal;
+
+
+        orderProducts.innerHTML += `
+
+          <div class="order-product">
+
+            <span>
+              ${item.name} × ${item.quantity}
+            </span>
+
+            <strong>
+              ${productTotal.toLocaleString("fr-FR")} DA
+            </strong>
+
+          </div>
+
+        `;
+
+      });
+
+
+      orderTotal.textContent =
+        total.toLocaleString("fr-FR") + " DA";
+
+
+      orderModal.classList.add("active");
+
+    }
+
+
+    function closeOrderForm() {
+
+      document
+        .getElementById("orderModal")
+        .classList.remove("active");
+
+    }
+
+
+    /* ============================
+       ENVOYER COMMANDE WHATSAPP
+    ============================ */
+
+    document
+      .getElementById("orderForm")
+      .addEventListener("submit", function(event) {
+
+
+        event.preventDefault();
+
+
+        const name =
+          document
+            .getElementById("customerName")
+            .value;
+
+
+        const phone =
+          document
+            .getElementById("customerPhone")
+            .value;
+
+
+        const wilaya =
+          document
+            .getElementById("customerWilaya")
+            .value;
+
+
+        const address =
+          document
+            .getElementById("customerAddress")
+            .value;
+
+
+        const note =
+          document
+            .getElementById("customerNote")
+            .value;
+
+
+        let total = 0;
+
+
+        let message =
+          "👑 *NOUVELLE COMMANDE - MK ROBES KABYLE*\n\n";
+
+
+        message +=
+          "👤 *Client :* " + name + "\n";
+
+
+        message +=
+          "📱 *Téléphone :* " + phone + "\n";
+
+
+        message +=
+          "📍 *Wilaya :* " + wilaya + "\n";
+
+
+        message +=
+          "🏠 *Adresse :* " + address + "\n\n";
+
+
+        message +=
+          "🛒 *Produits commandés :*\n\n";
+
+
+        cart.forEach(item => {
+
+          const productTotal =
+            item.price * item.quantity;
+
+
+          total += productTotal;
+
+
+          message +=
+            "• " +
+            item.name +
+            " × " +
+            item.quantity +
+            " = " +
+            productTotal.toLocaleString("fr-FR") +
+            " DA\n";
+
+        });
+
+
+        message +=
+          "\n💰 *TOTAL : " +
+          total.toLocaleString("fr-FR") +
+          " DA*\n";
+
+
+        if (note) {
+
+          message +=
+            "\n📝 *Informations supplémentaires :* " +
+            note;
+
+        }
+
+
+        /* NUMERO WHATSAPP MK ROBES KABYLE */
+
+        const numero =
+          "213794020017";
+
+
+        const url =
+          "https://wa.me/" +
+          numero +
+          "?text=" +
+          encodeURIComponent(message);
+
+
+        window.open(
+          url,
+          "_blank"
+        );
+
+      });
+
+  </script>
+
+</body>
+</html>
