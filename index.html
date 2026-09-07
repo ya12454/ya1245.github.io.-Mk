@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MK ROBES KABYLE | Boutique</title>
+
+    <style>
+        /* ---------- STYLES EXISTANTS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --gold: #c9a35b;
+            --gold-light: #e7c77f;
+            --black: #050505;
+            --dark: #0c0c0c;
+            --white: #f5f2eb;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .topbar {
+            text-align: center;
+            padding: 10px;
+            color: var(--gold-light);
+            border-bottom: 1px solid #332919;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.97);
+            border-bottom: 1px solid #332919;
+        }
+        nav {
+            max-width: 1250px;
+            margin: auto;
+            min-height: 85px;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            text-align: center;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .logo-mk {
+            display: block;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .logo-name {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 4px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .cart-btn {
+            background: transparent;
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .hero {
+            min-height: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .hero-content {
+            padding: 90px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: radial-gradient(circle, #18120b, #050505 70%);
+        }
+        .hero-small {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-size: 65px;
+            color: var(--gold-light);
+            font-weight: normal;
+        }
+        .hero h1 span {
+            display: block;
+            font-size: 22px;
+            letter-spacing: 7px;
+            margin-top: 15px;
+        }
+        .hero p {
+            color: #bbb;
+            line-height: 1.8;
+            margin: 25px 0;
+        }
+        .gold-line {
+            width: 160px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px 0;
+        }
+        .hero-image {
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75);
+        }
+        .btn {
+            display: inline-block;
+            width: fit-content;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            color: #050505;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .section {
+            max-width: 1300px;
+            margin: auto;
+            padding: 80px 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title p {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .section-title h2 {
+            color: var(--gold-light);
+            font-size: 45px;
+            font-weight: normal;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .product {
+            background: var(--dark);
+            border: 1px solid #332919;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+        .product:hover {
+            transform: translateY(-7px);
+            border-color: var(--gold);
+        }
+        .product-image {
+            height: 430px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .promo {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: black;
+            padding: 7px 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+        .product-info h3 {
+            color: var(--gold-light);
+            font-size: 21px;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+        .price {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+        .old-price {
+            color: #777;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+        .new-price {
+            color: var(--gold-light);
+            font-weight: bold;
+        }
+        .add-cart {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* ---------- RÉSEAUX SOCIAUX ---------- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0 15px 0;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 1px solid #332919;
+            border-radius: 30px;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.03);
+        }
+        .social-links a:hover {
+            color: var(--gold-light);
+            border-color: var(--gold);
+            background: rgba(201, 163, 91, 0.08);
+            transform: translateY(-2px);
+        }
+        .social-links .social-icon {
+            font-size: 22px;
+        }
+        .social-links .fb:hover { border-color: #1877f2; }
+        .social-links .ig:hover { border-color: #e4405f; }
+        .social-links .tt:hover { border-color: #ff0050; }
+
+        .contact-social {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #332919;
+        }
+        .contact-social p {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        /* ---------- STYLES ADMIN ---------- */
+        .admin-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 500;
+            background: #2a2a2a;
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+        .admin-toggle:hover { background: #3a3a3a; }
+        .admin-panel {
+            display: none;
+            background: #0f0f0f;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+        }
+        .admin-panel.active { display: block; }
+        .admin-panel h3 {
+            color: var(--gold-light);
+            font-weight: normal;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+        .admin-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .admin-actions .btn {
+            padding: 12px 25px;
+            font-size: 14px;
+        }
+        .admin-product {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+        }
+        .admin-product:last-child { border-bottom: none; }
+        .admin-product label {
+            display: block;
+            color: #aaa;
+            font-size: 12px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .admin-product input {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+        .admin-product input:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+        .admin-product .preview-img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+        .admin-product .delete-btn {
+            background: #5a1a1a;
+            border: 1px solid #aa4444;
+            color: #ff8888;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            transition: 0.2s;
+            align-self: center;
+        }
+        .admin-product .delete-btn:hover {
+            background: #7a2222;
+        }
+        .save-msg {
+            text-align: center;
+            color: var(--gold-light);
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+        .save-msg.show { display: block; }
+
+        .password-section {
+            background: #1a1a1a;
+            border: 1px solid #332919;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .password-section label {
+            color: #aaa;
+            font-size: 13px;
+        }
+        .password-section input {
+            padding: 10px;
+            background: #0f0f0f;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 200px;
+        }
+        .password-section .btn {
+            padding: 10px 20px;
+            font-size: 13px;
+        }
+
+        /* ---------- MODALE DE CONNEXION ---------- */
+        .login-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-modal.active {
+            display: flex;
+        }
+        .login-box {
+            background: #0f0f0f;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-box h2 {
+            color: var(--gold-light);
+            font-weight: normal;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .login-box p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+        .login-box input:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+        .login-box .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .login-box .error-msg {
+            color: #e07a7a;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        .login-box .error-msg.show {
+            display: block;
+        }
+
+        /* ---------- PANIER ---------- */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 1500;
+        }
+        .overlay.active { display: block; }
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: min(430px, 100%);
+            height: 100vh;
+            background: #0b0b0b;
+            z-index: 2000;
+            padding: 25px;
+            border-left: 1px solid var(--gold);
+            transition: 0.4s;
+            overflow-y: auto;
+        }
+        .cart-panel.active { right: 0; }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #332919;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .cart-header h2 {
+            color: var(--gold-light);
+            font-weight: normal;
+        }
+        .close-cart, .close-order {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .cart-item {
+            display: grid;
+            grid-template-columns: 65px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+        .cart-item img {
+            width: 65px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .cart-item h4 {
+            color: white;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        .cart-item p {
+            color: var(--gold-light);
+            font-size: 13px;
+        }
+        .remove {
+            background: none;
+            border: none;
+            color: #e07a7a;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .cart-total {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            color: var(--gold-light);
+            font-size: 18px;
+        }
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--gold);
+            color: black;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: #777;
+        }
+
+        /* ---------- FORMULAIRE COMMANDE ---------- */
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .order-modal.active { display: flex; }
+        .order-box {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #0b0b0b;
+            border: 1px solid var(--gold);
+            padding: 30px;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #332919;
+            margin-bottom: 25px;
+        }
+        .order-header small {
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+        .order-header h2 {
+            color: var(--gold-light);
+            margin-top: 8px;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: #151515;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+        .order-summary {
+            margin-top: 25px;
+            padding: 20px;
+            background: #111;
+            border: 1px solid #332919;
+        }
+        .order-summary h3 {
+            color: var(--gold-light);
+            font-weight: normal;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .order-product {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #252525;
+            color: #ddd;
+        }
+        .order-final-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            color: var(--gold-light);
+            border-top: 1px solid var(--gold);
+        }
+        .confirm-order {
+            width: 100%;
+            margin-top: 20px;
+            padding: 17px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .contact {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid #332919;
+        }
+        .contact h2 {
+            color: var(--gold-light);
+            font-size: 40px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+        .contact p {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            border-top: 1px solid #222;
+            font-size: 12px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            z-index: 100;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-image { min-height: 450px; }
+            .products { grid-template-columns: 1fr; }
+            .product-image { height: 520px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                width: 100%;
+                background: #080808;
+                flex-direction: column;
+                padding: 30px;
+            }
+            .nav-links.active { display: flex; }
+            .menu-btn { display: block; }
+            .hero h1 { font-size: 50px; }
+            .admin-product {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .admin-product .preview-img {
+                width: 100%;
+                height: auto;
+                max-height: 120px;
+            }
+            .password-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .password-section input {
+                width: 100%;
+            }
+            .login-box {
+                padding: 30px 20px;
+            }
+            .social-links a {
+                font-size: 14px;
+                padding: 8px 14px;
+            }
+        }
+        @media (max-width: 500px) {
+            nav { padding: 10px 15px; }
+            .cart-btn { font-size: 10px; padding: 9px; }
+            .logo-mk { font-size: 32px; }
+            .hero-content { padding: 60px 25px; }
+            .product-image { height: 450px; }
+            .section { padding: 60px 20px; }
+            .order-box { padding: 20px; }
+            .admin-toggle { bottom: 80px; right: 10px; padding: 10px 14px; font-size: 12px; }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            .social-links a {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== TOPBAR ========== -->
+    <div class="topbar">MK ROBES KABYLE — L'ÉLÉGANCE DE LA TRADITION</div>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <nav>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#accueil">ACCUEIL</a>
+                <a href="#boutique">NOS ROBES</a>
+                <a href="#contact">CONTACT</a>
+            </div>
+            <a href="#accueil" class="logo">
+                <span class="logo-mk">MK</span>
+                <span class="logo-name">ROBES KABYLE</span>
+            </a>
+            <button class="cart-btn" onclick="openCart()">🛒 PANIER (<span id="cartCount">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <div class="hero-small">✦ COLLECTION TRADITIONNELLE ✦</div>
+            <h1>MK<span>ROBES KABYLE</span></h1>
+            <div class="gold-line"></div>
+            <p>Découvrez notre collection de robes kabyles élégantes, inspirées de la tradition et conçues pour sublimer votre beauté.</p>
+            <a href="#boutique" class="btn">DÉCOUVRIR LA COLLECTION</a>
+        </div>
+        <div class="hero-image">
+            <img id="heroImage" src="https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg" alt="MK Robes Kabyle">
+        </div>
+    </section>
+
+    <!-- ========== BOUTIQUE ========== -->
+    <section class="section" id="boutique">
+        <div class="section-title">
+            <p>MK ROBES KABYLE</p>
+            <h2>NOS ROBES</h2>
+        </div>
+
+        <!-- Panneau d'administration -->
+        <div class="admin-panel" id="adminPanel">
+            <h3>⚙️ ADMINISTRATION</h3>
+            <p style="text-align:center;color:#888;margin-bottom:20px;">
+                Gérez vos produits : modification, ajout, suppression.
+            </p>
+            <div class="admin-actions">
+                <button class="btn" onclick="addProduct()">➕ AJOUTER UN PRODUIT</button>
+                <button class="btn" onclick="saveProducts()">💾 SAUVEGARDER</button>
+                <button class="btn" style="background:#444;color:#ddd;" onclick="resetProducts()">↺ RÉINITIALISER</button>
+            </div>
+            <div id="adminProducts"></div>
+
+            <!-- Zone de changement de mot de passe -->
+            <div class="password-section">
+                <label for="newPassword">🔑 Nouveau mot de passe :</label>
+                <input type="text" id="newPassword" placeholder="Entrez un nouveau mot de passe" />
+                <button class="btn" onclick="changePassword()">CHANGER LE MOT DE PASSE</button>
+            </div>
+
+            <div class="save-msg" id="saveMsg">✅ Modifications enregistrées !</div>
+        </div>
+
+        <!-- Liste des produits -->
+        <div class="products" id="productList"></div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact">
+        <h2>CONTACTEZ-NOUS</h2>
+        <p>Commandez facilement vos robes directement via WhatsApp.</p>
+        <a href="https://wa.me/213794020017" class="btn" target="_blank">💬 CONTACTER SUR WHATSAPP</a>
+
+        <!-- ===== RÉSEAUX SOCIAUX (unique emplacement) ===== -->
+        <div class="contact-social">
+            <p>📲 Suivez-nous également sur nos réseaux :</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/1LADUz4RX5/" target="_blank" class="fb">
+                    <span class="social-icon">📘</span> Facebook
+                </a>
+                <a href="instagram://user/?username=mk.robes&utm_source=qr" target="_blank" class="ig">
+                    <span class="social-icon">📸</span> Instagram
+                </a>
+                <a href="https://www.tiktok.com/@robespmix3s?_r=1&_t=ZS-99X9JVUcxns" target="_blank" class="tt">
+                    <span class="social-icon">🎵</span> TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        © 2026 MK ROBES KABYLE — Tous droits réservés
+    </footer>
+
+    <!-- ========== PANIER ========== -->
+    <div class="overlay" id="overlay" onclick="closeCart()"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>MON PANIER</h2>
+            <button class="close-cart" onclick="closeCart()">×</button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <strong>TOTAL :</strong>
+            <strong id="cartTotal">0 DA</strong>
+        </div>
+        <button class="checkout-btn" onclick="orderWhatsApp()">FINALISER MA COMMANDE</button>
+    </div>
+
+    <!-- ========== FORMULAIRE COMMANDE ========== -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-box">
+            <div class="order-header">
+                <div>
+                    <small>MK ROBES KABYLE</small>
+                    <h2>FINALISER MA COMMANDE</h2>
+                </div>
+                <button class="close-order" onclick="closeOrderForm()">×</button>
+            </div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Nom et prénom *</label>
+                    <input type="text" id="customerName" placeholder="Votre nom complet" required />
+                </div>
+                <div class="form-group">
+                    <label>Numéro de téléphone *</label>
+                    <input type="tel" id="customerPhone" placeholder="0555 12 34 56" required />
+                </div>
+                <div class="form-group">
+                    <label>Wilaya *</label>
+                    <select id="customerWilaya" required>
+                        <option value="">Sélectionnez votre wilaya</option>
+                        <option>Adrar</option><option>Chlef</option><option>Laghouat</option>
+                        <option>Oum El Bouaghi</option><option>Batna</option><option>Béjaïa</option>
+                        <option>Biskra</option><option>Béchar</option><option>Blida</option>
+                        <option>Bouira</option><option>Tamanrasset</option><option>Tébessa</option>
+                        <option>Tlemcen</option><option>Tiaret</option><option>Tizi Ouzou</option>
+                        <option>Alger</option><option>Djelfa</option><option>Jijel</option>
+                        <option>Sétif</option><option>Saïda</option><option>Skikda</option>
+                        <option>Sidi Bel Abbès</option><option>Annaba</option><option>Guelma</option>
+                        <option>Constantine</option><option>Médéa</option><option>Mostaganem</option>
+                        <option>M'Sila</option><option>Mascara</option><option>Ouargla</option>
+                        <option>Oran</option><option>El Bayadh</option><option>Illizi</option>
+                        <option>Bordj Bou Arreridj</option><option>Boumerdès</option><option>El Tarf</option>
+                        <option>Tindouf</option><option>Tissemsilt</option><option>El Oued</option>
+                        <option>Khenchela</option><option>Souk Ahras</option><option>Tipaza</option>
+                        <option>Mila</option><option>Aïn Defla</option><option>Naâma</option>
+                        <option>Aïn Témouchent</option><option>Ghardaïa</option><option>Relizane</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Adresse de livraison *</label>
+                    <textarea id="customerAddress" placeholder="Commune, quartier, rue..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Informations supplémentaires</label>
+                    <textarea id="customerNote" placeholder="Exemple : taille souhaitée..."></textarea>
+                </div>
+                <div class="order-summary">
+                    <h3>RÉSUMÉ DE LA COMMANDE</h3>
+                    <div id="orderProducts"></div>
+                    <div class="order-final-total">
+                        <span>TOTAL</span>
+                        <strong id="orderTotal">0 DA</strong>
+                    </div>
+                </div>
+                <button type="submit" class="confirm-order">CONFIRMER LA COMMANDE 💬</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== MODALE DE CONNEXION ========== -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-box">
+            <h2>🔐 Accès Admin</h2>
+            <p>Veuillez saisir le mot de passe pour gérer le catalogue.</p>
+            <input type="password" id="loginPassword" placeholder="Mot de passe" autocomplete="off" />
+            <button class="btn" onclick="attemptLogin()">SE CONNECTER</button>
+            <div class="error-msg" id="loginError">❌ Mot de passe incorrect</div>
+        </div>
+    </div>
+
+    <!-- ========== BOUTON ADMIN + WHATSAPP ========== -->
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙️ ADMIN</button>
+    <a href="https://wa.me/213794020017" class="whatsapp-float" target="_blank">💬</a>
+
+    <!-- ========== SCRIPT ========== -->
+    <script>
+        // ============================================================
+        // 0. AUTHENTIFICATION (avec modale personnalisée)
+        // ============================================================
+
+        let adminPassword = localStorage.getItem('mk_admin_password') || 'mkadmin';
+        let isAuthenticated = false;
+
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('loginPassword').focus();
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function attemptLogin() {
+            const input = document.getElementById('loginPassword');
+            const error = document.getElementById('loginError');
+            if (input.value === adminPassword) {
+                isAuthenticated = true;
+                hideLoginModal();
+                document.getElementById('adminPanel').classList.add('active');
+                renderAdmin();
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        document.getElementById('loginPassword').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                attemptLogin();
+            }
+        });
+
+        function changePassword() {
+            if (!isAuthenticated) return;
+            const input = document.getElementById('newPassword');
+            const newPwd = input.value.trim();
+            if (!newPwd) {
+                alert('Veuillez entrer un nouveau mot de passe.');
+                return;
+            }
+            if (newPwd === adminPassword) {
+                alert('Le nouveau mot de passe est identique à l\'ancien.');
+                return;
+            }
+            adminPassword = newPwd;
+            localStorage.setItem('mk_admin_password', adminPassword);
+            input.value = '';
+            alert('✅ Mot de passe mis à jour avec succès !');
+        }
+
+        // ============================================================
+        // 1. DONNÉES PRODUITS
+        // ============================================================
+
+        const DEFAULT_PRODUCTS = [{
+            id: 1,
+            name: 'Robe Kabyle',
+            price: 6900,
+            image: 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg',
+            promo: false,
+        }, {
+            id: 2,
+            name: 'Robe Kabyle 2',
+            price: 6900,
+            image: 'https://i.ibb.co/Ld9s9YYP/Messenger-creation-1749773962810621.jpg',
+            promo: false,
+        }, {
+            id: 3,
+            name: 'Robe Kabyle Premium',
+            price: 13000,
+            image: 'https://i.ibb.co/S7GP4tbV/Messenger-creation-3229412453925610.jpg',
+            promo: true,
+            oldPrice: 15000,
+        }, ];
+
+        let products = loadProducts();
+
+        function loadProducts() {
+            const stored = localStorage.getItem('mk_products');
+            if (stored) {
+                try {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                } catch (_) {}
+            }
+            return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+        }
+
+        function saveProductsToStorage() {
+            localStorage.setItem('mk_products', JSON.stringify(products));
+        }
+
+        function getNextId() {
+            if (products.length === 0) return 1;
+            return Math.max(...products.map(p => p.id)) + 1;
+        }
+
+        // ============================================================
+        // 2. RENDU
+        // ============================================================
+
+        function renderProducts() {
+            const container = document.getElementById('productList');
+            container.innerHTML = '';
+            if (products.length === 0) {
+                container.innerHTML = `<p style="text-align:center;color:#777;grid-column:1/-1;">Aucun produit disponible.</p>`;
+                return;
+            }
+            products.forEach((p) => {
+                const promoHTML = p.promo ? `<div class="promo">PROMOTION</div>` : '';
+                const priceHTML = p.promo ?
+                    `<span class="old-price">${p.oldPrice.toLocaleString('fr-FR')} DA</span>
+                                     <span class="new-price">${p.price.toLocaleString('fr-FR')} DA</span>` :
+                    `${p.price.toLocaleString('fr-FR')} DA`;
+                const div = document.createElement('article');
+                div.className = 'product';
+                div.innerHTML = `
+                            <div class="product-image">${promoHTML}<img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+                            <div class="product-info">
+                                <h3>${p.name}</h3>
+                                <div class="price">${priceHTML}</div>
+                                <button class="add-cart" onclick="addToCart(${p.id})">🛒 AJOUTER AU PANIER</button>
+                            </div>
+                        `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderAdmin() {
+            if (!isAuthenticated) return;
+            const container = document.getElementById('adminProducts');
+            container.innerHTML = '';
+            if (products.length === 0) {
+                container.innerHTML = `<p style="text-align:center;color:#777;padding:20px;">Aucun produit. Cliquez sur "Ajouter" pour en créer.</p>`;
+                return;
+            }
+            products.forEach((p, index) => {
+                const div = document.createElement('div');
+                div.className = 'admin-product';
+                div.innerHTML = `
+                            <div>
+                                <label>NOM</label>
+                                <input type="text" id="admin_name_${index}" value="${p.name}" />
+                            </div>
+                            <div>
+                                <label>PRIX (DA)</label>
+                                <input type="number" id="admin_price_${index}" value="${p.price}" step="100" min="0" />
+                            </div>
+                            <div>
+                                <label>URL DE L'IMAGE</label>
+                                <input type="text" id="admin_image_${index}" value="${p.image}" />
+                                <div style="margin-top:6px;"><img class="preview-img" src="${p.image}" alt="aperçu" /></div>
+                            </div>
+                            <div style="align-self:end;padding-bottom:4px;display:flex;flex-direction:column;gap:8px;">
+                                <label style="display:inline-flex;align-items:center;gap:8px;color:#aaa;font-size:13px;">
+                                    <input type="checkbox" id="admin_promo_${index}" ${p.promo ? 'checked' : ''} />
+                                    Promo
+                                </label>
+                                <div style="display:${p.promo ? 'flex' : 'none'};gap:10px;align-items:center;" id="admin_oldPriceWrap_${index}">
+                                    <label style="font-size:11px;color:#777;">Ancien prix</label>
+                                    <input type="number" id="admin_oldPrice_${index}" value="${p.oldPrice || 0}" step="100" min="0" style="width:100px;" />
+                                </div>
+                                <button class="delete-btn" onclick="deleteProduct(${p.id})">🗑️ Supprimer</button>
+                            </div>
+                        `;
+                container.appendChild(div);
+                const promoCheck = document.getElementById(`admin_promo_${index}`);
+                const oldWrap = document.getElementById(`admin_oldPriceWrap_${index}`);
+                promoCheck.addEventListener('change', () => {
+                    oldWrap.style.display = promoCheck.checked ? 'flex' : 'none';
+                });
+            });
+        }
+
+        // ============================================================
+        // 3. CRUD
+        // ============================================================
+
+        function addProduct() {
+            if (!isAuthenticated) return;
+            products.push({ id: getNextId(), name: 'Nouvelle Robe', price: 6900, image: 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg', promo: false });
+            saveProductsToStorage();
+            renderProducts();
+            renderAdmin();
+            showSaveMsg('✅ Nouveau produit ajouté !');
+        }
+
+        function deleteProduct(id) {
+            if (!isAuthenticated) return;
+            if (!confirm('Supprimer définitivement ce produit ?')) return;
+            products = products.filter(p => p.id !== id);
+            cart = cart.filter(item => item.id !== id);
+            saveProductsToStorage();
+            renderProducts();
+            renderAdmin();
+            updateCart();
+            showSaveMsg('🗑️ Produit supprimé.');
+        }
+
+        function saveProducts() {
+            if (!isAuthenticated) return;
+            for (let i = 0; i < products.length; i++) {
+                const name = document.getElementById(`admin_name_${i}`).value.trim();
+                const price = parseInt(document.getElementById(`admin_price_${i}`).value) || 0;
+                const image = document.getElementById(`admin_image_${i}`).value.trim();
+                const promo = document.getElementById(`admin_promo_${i}`).checked;
+                let oldPrice = null;
+                if (promo) oldPrice = parseInt(document.getElementById(`admin_oldPrice_${i}`).value) || 0;
+                products[i].name = name || 'Robe Kabyle';
+                products[i].price = price;
+                products[i].image = image || 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg';
+                products[i].promo = promo;
+                products[i].oldPrice = oldPrice;
+            }
+            saveProductsToStorage();
+            renderProducts();
+            renderAdmin();
+            if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+            showSaveMsg('✅ Modifications enregistrées !');
+        }
+
+        function resetProducts() {
+            if (!isAuthenticated) return;
+            if (confirm('Réinitialiser tous les produits aux valeurs par défaut ?')) {
+                products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+                saveProductsToStorage();
+                renderProducts();
+                renderAdmin();
+                if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+                cart = [];
+                updateCart();
+                showSaveMsg('↺ Réinitialisé avec succès !');
+            }
+        }
+
+        function showSaveMsg(text) {
+            const msg = document.getElementById('saveMsg');
+            msg.textContent = text;
+            msg.classList.add('show');
+            setTimeout(() => {
+                msg.classList.remove('show');
+                msg.textContent = '✅ Modifications enregistrées !';
+            }, 3000);
+        }
+
+        // ============================================================
+        // 4. PANIER
+        // ============================================================
+
+        let cart = [];
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) { alert('Ce produit n\'existe plus.'); return; }
+            const existing = cart.find(item => item.id === productId);
+            if (existing) existing.quantity++;
+            else cart.push({ id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 });
+            updateCart();
+            openCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            cartItems.innerHTML = '';
+            let total = 0,
+                count = 0;
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide 🛒</div>';
+            }
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                count += item.quantity;
+                cartItems.innerHTML += `
+                            <div class="cart-item">
+                                <img src="${item.image}" alt="${item.name}" />
+                                <div><h4>${item.name}</h4><p>${item.price.toLocaleString('fr-FR')} DA × ${item.quantity}</p></div>
+                                <button class="remove" onclick="removeFromCart(${index})">Supprimer</button>
+                            </div>
+                        `;
+            });
+            cartCount.textContent = count;
+            cartTotal.textContent = total.toLocaleString('fr-FR') + ' DA';
+        }
+
+        function openCart() {
+            document.getElementById('cartPanel').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartPanel').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // ============================================================
+        // 5. COMMANDE WHATSAPP
+        // ============================================================
+
+        function orderWhatsApp() {
+            if (cart.length === 0) { alert('Votre panier est vide.'); return; }
+            closeCart();
+            openOrderForm();
+        }
+
+        function openOrderForm() {
+            const modal = document.getElementById('orderModal');
+            const orderProducts = document.getElementById('orderProducts');
+            const orderTotal = document.getElementById('orderTotal');
+            orderProducts.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const productTotal = item.price * item.quantity;
+                total += productTotal;
+                orderProducts.innerHTML += `
+                            <div class="order-product">
+                                <span>${item.name} × ${item.quantity}</span>
+                                <strong>${productTotal.toLocaleString('fr-FR')} DA</strong>
+                            </div>
+                        `;
+            });
+            orderTotal.textContent = total.toLocaleString('fr-FR') + ' DA';
+            modal.classList.add('active');
+        }
+
+        function closeOrderForm() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const wilaya = document.getElementById('customerWilaya').value;
+            const address = document.getElementById('customerAddress').value;
+            const note = document.getElementById('customerNote').value;
+            let total = 0;
+            let message = '👑 *NOUVELLE COMMANDE - MK ROBES KABYLE*\n\n';
+            message += `👤 *Client :* ${name}\n📱 *Téléphone :* ${phone}\n📍 *Wilaya :* ${wilaya}\n🏠 *Adresse :* ${address}\n\n`;
+            message += '🛒 *Produits commandés :*\n\n';
+            cart.forEach(item => {
+                const productTotal = item.price * item.quantity;
+                total += productTotal;
+                message += `• ${item.name} × ${item.quantity} = ${productTotal.toLocaleString('fr-FR')} DA\n`;
+            });
+            message += `\n💰 *TOTAL : ${total.toLocaleString('fr-FR')} DA*\n`;
+            if (note) message += `\n📝 *Informations supplémentaires :* ${note}`;
+            const url = 'https://wa.me/213794020017?text=' + encodeURIComponent(message);
+            window.open(url, '_blank');
+        });
+
+        // ============================================================
+        // 6. ADMIN TOGGLE (avec modale)
+        // ============================================================
+
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                isAuthenticated = false;
+                return;
+            }
+            showLoginModal();
+        }
+
+        // ============================================================
+        // 7. MENU MOBILE
+        // ============================================================
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // ============================================================
+        // 8. INITIALISATION
+        // ============================================================
+
+        renderProducts();
+        updateCart();
+        if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+
+        console.log('🔧 Administration sécurisée avec modale - Mot de passe : ' + adminPassword);
+        console.log('💡 Cliquez sur "ADMIN" pour vous connecter.');
+    </script>
+</body>
+</html>
