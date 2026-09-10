@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MK ROBES KABYLE | Boutique</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gold: #c9a35b;
+            --gold-light: #e7c77f;
+            --black: #050505;
+            --dark: #0c0c0c;
+            --white: #f5f2eb;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .topbar {
+            text-align: center;
+            padding: 10px;
+            color: var(--gold-light);
+            border-bottom: 1px solid #332919;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.97);
+            border-bottom: 1px solid #332919;
+        }
+        nav {
+            max-width: 1250px;
+            margin: auto;
+            min-height: 85px;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { text-align: center; color: var(--gold); text-decoration: none; }
+        .logo-mk { display: block; font-size: 40px; font-weight: bold; }
+        .logo-name { display: block; font-size: 11px; letter-spacing: 4px; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .cart-btn {
+            background: transparent;
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .hero {
+            min-height: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .hero-content {
+            padding: 90px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: radial-gradient(circle, #18120b, #050505 70%);
+        }
+        .hero-small {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .hero h1 { font-size: 65px; color: var(--gold-light); font-weight: normal; }
+        .hero h1 span { display: block; font-size: 22px; letter-spacing: 7px; margin-top: 15px; }
+        .hero p { color: #bbb; line-height: 1.8; margin: 25px 0; }
+        .gold-line { width: 160px; height: 1px; background: var(--gold); margin: 20px 0; }
+        .hero-image { overflow: hidden; min-height: 600px; }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.75); }
+        .btn {
+            display: inline-block;
+            width: fit-content;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            color: #050505;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .section { max-width: 1300px; margin: auto; padding: 80px 30px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title p { color: var(--gold); letter-spacing: 3px; font-size: 12px; margin-bottom: 10px; }
+        .section-title h2 { color: var(--gold-light); font-size: 45px; font-weight: normal; }
+        .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .product {
+            background: var(--dark);
+            border: 1px solid #332919;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .product:hover { transform: translateY(-7px); border-color: var(--gold); }
+        .product-image { height: 430px; position: relative; overflow: hidden; background: #111; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .promo {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: black;
+            padding: 7px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product-info { padding: 25px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .product-info h3 { color: var(--gold-light); font-size: 21px; font-weight: normal; margin-bottom: 15px; }
+        .price { font-size: 19px; margin-bottom: 15px; }
+        .old-price { color: #777; text-decoration: line-through; margin-right: 8px; }
+        .new-price { color: var(--gold-light); font-weight: bold; }
+
+        /* ---------- SÉLECTION COULEUR ---------- */
+        .color-section {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .color-section .color-label {
+            display: block;
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .color-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #444;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            transition: 0.2s;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.5) inset;
+        }
+        .color-btn:hover {
+            transform: scale(1.1);
+            border-color: #888;
+        }
+        .color-btn.selected {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(201,163,91,0.35);
+            transform: scale(1.1);
+        }
+        .color-btn.selected::after {
+            content: "✓";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+            pointer-events: none;
+        }
+        .selected-color-name {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #bbb;
+            min-height: 16px;
+        }
+        .selected-color-name strong {
+            color: var(--gold-light);
+        }
+
+        .add-cart {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+        .add-cart:hover { background: var(--gold); color: #050505; }
+
+        /* ---------- SECTION SUR MESURE ---------- */
+        .surmesure-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+            border-top: 1px solid #332919;
+            border-bottom: 1px solid #332919;
+        }
+        .surmesure-container {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            min-height: 600px;
+        }
+        .surmesure-image { position: relative; overflow: hidden; background: #111; }
+        .surmesure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+        .surmesure-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 60%, rgba(5,5,5,0.95));
+        }
+        .surmesure-image .badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--gold);
+            color: #050505;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+        .surmesure-form-wrap {
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .surmesure-form-wrap small { color: var(--gold); letter-spacing: 3px; font-size: 12px; }
+        .surmesure-form-wrap h2 {
+            color: var(--gold-light);
+            font-size: 38px;
+            font-weight: normal;
+            margin: 12px 0 10px;
+            line-height: 1.1;
+        }
+        .surmesure-form-wrap > p {
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .surmesure-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .surmesure-form .full { grid-column: 1 / -1; }
+        .surmesure-form .field label {
+            display: block;
+            color: var(--gold-light);
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .surmesure-form .field input,
+        .surmesure-form .field select,
+        .surmesure-form .field textarea {
+            width: 100%;
+            padding: 12px;
+            background: #131313;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+        .surmesure-form .field input:focus,
+        .surmesure-form .field select:focus,
+        .surmesure-form .field textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: #1a1a1a;
+        }
+        .surmesure-form .field textarea { resize: vertical; min-height: 70px; }
+        .measurement-title {
+            grid-column: 1 / -1;
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .surmesure-form .btn-submit {
+            grid-column: 1 / -1;
+            margin-top: 10px;
+            padding: 16px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            color: #050505;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .surmesure-form .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201,163,91,0.25);
+        }
+
+        /* ---------- RÉSEAUX SOCIAUX ---------- */
+        .social-links { display: flex; justify-content: center; gap: 25px; margin: 25px 0 15px 0; flex-wrap: wrap; }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 1px solid #332919;
+            border-radius: 30px;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.03);
+        }
+        .social-links a:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(201,163,91,0.08); transform: translateY(-2px); }
+        .social-links .social-icon { font-size: 22px; }
+        .social-links .fb:hover { border-color: #1877f2; }
+        .social-links .ig:hover { border-color: #e4405f; }
+        .social-links .tt:hover { border-color: #ff0050; }
+        .contact-social { margin-top: 30px; padding-top: 30px; border-top: 1px solid #332919; }
+        .contact-social p { color: #aaa; margin-bottom: 15px; }
+
+        /* ---------- ADMIN ---------- */
+        .admin-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 500;
+            background: #2a2a2a;
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+        .admin-toggle:hover { background: #3a3a3a; }
+        .admin-panel {
+            display: none;
+            background: #0f0f0f;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+        .admin-panel.active { display: block; }
+        .admin-panel h3 { color: var(--gold-light); font-weight: normal; margin-bottom: 15px; text-align: center; font-size: 28px; letter-spacing: 2px; }
+        .admin-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; justify-content: center; }
+        .admin-actions .btn { padding: 12px 25px; font-size: 14px; }
+        .admin-product {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+        }
+        .admin-product:last-child { border-bottom: none; }
+        .admin-product label { display: block; color: #aaa; font-size: 12px; margin-bottom: 6px; letter-spacing: 1px; }
+        .admin-product input[type="text"],
+        .admin-product input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+        .admin-product input:focus { border-color: var(--gold); outline: none; }
+        .admin-product .preview-img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background: #222;
+        }
+        .admin-product .delete-btn {
+            background: #5a1a1a;
+            border: 1px solid #aa4444;
+            color: #ff8888;
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            transition: 0.2s;
+            align-self: center;
+        }
+        .admin-product .delete-btn:hover { background: #7a2222; }
+        .save-msg { text-align: center; color: var(--gold-light); margin-top: 15px; font-size: 14px; display: none; }
+        .save-msg.show { display: block; }
+        .password-section {
+            background: #1a1a1a;
+            border: 1px solid #332919;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .password-section label { color: #aaa; font-size: 13px; }
+        .password-section input {
+            padding: 10px;
+            background: #0f0f0f;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 200px;
+        }
+        .password-section .btn { padding: 10px 20px; font-size: 13px; }
+
+        /* ---------- LOGIN ---------- */
+        .login-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-modal.active { display: flex; }
+        .login-box {
+            background: #0f0f0f;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-box h2 { color: var(--gold-light); font-weight: normal; margin-bottom: 10px; font-size: 24px; }
+        .login-box p { color: #888; font-size: 14px; margin-bottom: 25px; }
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+        .login-box input:focus { border-color: var(--gold); outline: none; }
+        .login-box .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .login-box .error-msg { color: #e07a7a; font-size: 14px; margin-top: 10px; display: none; }
+        .login-box .error-msg.show { display: block; }
+
+        /* ---------- PANIER ---------- */
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1500; }
+        .overlay.active { display: block; }
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: min(430px, 100%);
+            height: 100vh;
+            background: #0b0b0b;
+            z-index: 2000;
+            padding: 25px;
+            border-left: 1px solid var(--gold);
+            transition: 0.4s;
+            overflow-y: auto;
+        }
+        .cart-panel.active { right: 0; }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #332919;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .cart-header h2 { color: var(--gold-light); font-weight: normal; }
+        .close-cart, .close-order {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .cart-item {
+            display: grid;
+            grid-template-columns: 65px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+        .cart-item img { width: 65px; height: 80px; object-fit: cover; }
+        .cart-item h4 { color: white; font-size: 15px; margin-bottom: 5px; }
+        .cart-item p { color: var(--gold-light); font-size: 13px; }
+        .cart-item .cart-color {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        .cart-item .cart-color strong { color: var(--gold-light); }
+        .remove { background: none; border: none; color: #e07a7a; cursor: pointer; font-size: 11px; font-family: inherit; }
+        .cart-total {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            color: var(--gold-light);
+            font-size: 18px;
+        }
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--gold);
+            color: black;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .empty-cart { text-align: center; padding: 40px 0; color: #777; }
+
+        /* ---------- FORMULAIRE COMMANDE ---------- */
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .order-modal.active { display: flex; }
+        .order-box {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #0b0b0b;
+            border: 1px solid var(--gold);
+            padding: 30px;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #332919;
+            margin-bottom: 25px;
+        }
+        .order-header small { color: var(--gold); letter-spacing: 2px; }
+        .order-header h2 { color: var(--gold-light); margin-top: 8px; font-size: 24px; font-weight: normal; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 8px; font-size: 13px; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: #151515;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+        }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .order-summary {
+            margin-top: 25px;
+            padding: 20px;
+            background: #111;
+            border: 1px solid #332919;
+        }
+        .order-summary h3 { color: var(--gold-light); font-weight: normal; margin-bottom: 15px; font-size: 16px; }
+        .order-product {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #252525;
+            color: #ddd;
+        }
+        .order-product .op-name {
+            display: block;
+            color: #ddd;
+        }
+        .order-product .op-color {
+            display: block;
+            font-size: 11px;
+            color: var(--gold);
+            margin-top: 3px;
+        }
+        .order-final-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            color: var(--gold-light);
+            border-top: 1px solid var(--gold);
+        }
+        .confirm-order {
+            width: 100%;
+            margin-top: 20px;
+            padding: 17px;
+            background: linear-gradient(135deg, #a77d37, #e0bd70);
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .contact { text-align: center; padding: 80px 20px; border-top: 1px solid #332919; }
+        .contact h2 { color: var(--gold-light); font-size: 40px; font-weight: normal; margin-bottom: 20px; }
+        .contact p { color: #aaa; margin-bottom: 30px; }
+        footer { text-align: center; padding: 30px; color: #777; border-top: 1px solid #222; font-size: 12px; }
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            z-index: 100;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-image { min-height: 450px; }
+            .products { grid-template-columns: 1fr; }
+            .product-image { height: 520px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                width: 100%;
+                background: #080808;
+                flex-direction: column;
+                padding: 30px;
+                border-bottom: 1px solid var(--gold);
+            }
+            .nav-links.active { display: flex; }
+            .menu-btn { display: block; }
+            .hero h1 { font-size: 50px; }
+            .admin-product { grid-template-columns: 1fr; gap: 15px; }
+            .admin-product .preview-img { width: 100%; height: auto; max-height: 150px; }
+            .password-section { flex-direction: column; align-items: stretch; }
+            .password-section input { width: 100%; }
+            .login-box { padding: 30px 20px; }
+            .social-links a { font-size: 14px; padding: 8px 14px; }
+            .surmesure-container { grid-template-columns: 1fr; }
+            .surmesure-image { min-height: 350px; }
+            .surmesure-form-wrap { padding: 40px 25px; }
+            .surmesure-form { grid-template-columns: 1fr; }
+            .surmesure-form-wrap h2 { font-size: 30px; }
+        }
+        @media (max-width: 500px) {
+            nav { padding: 10px 15px; }
+            .cart-btn { font-size: 10px; padding: 9px; }
+            .logo-mk { font-size: 32px; }
+            .hero-content { padding: 60px 25px; }
+            .product-image { height: 450px; }
+            .section { padding: 60px 20px; }
+            .order-box { padding: 20px; }
+            .admin-toggle { bottom: 80px; right: 10px; padding: 10px 14px; font-size: 12px; }
+            .social-links { flex-direction: column; align-items: center; gap: 12px; }
+            .social-links a { width: 100%; max-width: 280px; justify-content: center; }
+            .surmesure-form-wrap { padding: 35px 20px; }
+            .surmesure-form-wrap h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">MK ROBES KABYLE — L'ÉLÉGANCE DE LA TRADITION</div>
+
+    <header>
+        <nav>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#accueil">ACCUEIL</a>
+                <a href="#boutique">NOS ROBES</a>
+                <a href="#surmesure">SUR MESURE</a>
+                <a href="#contact">CONTACT</a>
+            </div>
+            <a href="#accueil" class="logo">
+                <span class="logo-mk">MK</span>
+                <span class="logo-name">ROBES KABYLE</span>
+            </a>
+            <button class="cart-btn" onclick="openCart()">🛒 PANIER (<span id="cartCount">0</span>)</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <div class="hero-small">✦ COLLECTION TRADITIONNELLE ✦</div>
+            <h1>MK<span>ROBES KABYLE</span></h1>
+            <div class="gold-line"></div>
+            <p>Découvrez notre collection de robes kabyles élégantes, inspirées de la tradition et conçues pour sublimer votre beauté.</p>
+            <a href="#boutique" class="btn">DÉCOUVRIR LA COLLECTION</a>
+        </div>
+        <div class="hero-image">
+            <img id="heroImage" src="https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg" alt="MK Robes Kabyle">
+        </div>
+    </section>
+
+    <section class="section" id="boutique">
+        <div class="section-title">
+            <p>MK ROBES KABYLE</p>
+            <h2>NOS ROBES</h2>
+        </div>
+
+        <div class="admin-panel" id="adminPanel">
+            <h3>⚙️ ADMINISTRATION</h3>
+            <p style="text-align:center;color:#888;margin-bottom:20px;">
+                Gérez vos produits, prix, photos et couleurs disponibles.
+            </p>
+            <div class="admin-actions">
+                <button class="btn" onclick="addProduct()">➕ AJOUTER UN PRODUIT</button>
+                <button class="btn" onclick="saveProducts()">💾 SAUVEGARDER</button>
+                <button class="btn" style="background:#444;color:#ddd;" onclick="resetProducts()">↺ RÉINITIALISER</button>
+            </div>
+            <div id="adminProducts"></div>
+
+            <div class="password-section">
+                <label for="newPassword">🔑 Nouveau mot de passe :</label>
+                <input type="text" id="newPassword" placeholder="Entrez un nouveau mot de passe" />
+                <button class="btn" onclick="changePassword()">CHANGER LE MOT DE PASSE</button>
+            </div>
+
+            <div class="save-msg" id="saveMsg">✅ Modifications enregistrées !</div>
+        </div>
+
+        <div class="products" id="productList"></div>
+    </section>
+
+    <section class="surmesure-section" id="surmesure">
+        <div class="surmesure-container">
+            <div class="surmesure-image">
+                <div class="badge">✦ SUR MESURE</div>
+                <img src="https://i.ibb.co/Ld9s9YYP/Messenger-creation-1749773962810621.jpg" alt="Robe Kabyle sur mesure">
+            </div>
+            <div class="surmesure-form-wrap">
+                <small>CRÉATION PERSONNALISÉE</small>
+                <h2>VOTRE ROBE<br>KABYLE SUR MESURE</h2>
+                <p>Vous rêvez d'une robe unique, adaptée à vos mesures et à vos goûts ? Remplissez le formulaire ci-dessous, nous vous contacterons rapidement.</p>
+
+                <form class="surmesure-form" id="surmesureForm">
+                    <div class="field">
+                        <label>Nom et prénom *</label>
+                        <input type="text" id="sm_name" required>
+                    </div>
+                    <div class="field">
+                        <label>Téléphone *</label>
+                        <input type="tel" id="sm_phone" required>
+                    </div>
+                    <div class="field">
+                        <label>Wilaya *</label>
+                        <select id="sm_wilaya" required>
+                            <option value="">Sélectionnez votre wilaya</option>
+                            <option>Adrar</option><option>Chlef</option><option>Laghouat</option>
+                            <option>Oum El Bouaghi</option><option>Batna</option><option>Béjaïa</option>
+                            <option>Biskra</option><option>Béchar</option><option>Blida</option>
+                            <option>Bouira</option><option>Tamanrasset</option><option>Tébessa</option>
+                            <option>Tlemcen</option><option>Tiaret</option><option>Tizi Ouzou</option>
+                            <option>Alger</option><option>Djelfa</option><option>Jijel</option>
+                            <option>Sétif</option><option>Saïda</option><option>Skikda</option>
+                            <option>Sidi Bel Abbès</option><option>Annaba</option><option>Guelma</option>
+                            <option>Constantine</option><option>Médéa</option><option>Mostaganem</option>
+                            <option>M'Sila</option><option>Mascara</option><option>Ouargla</option>
+                            <option>Oran</option><option>El Bayadh</option><option>Illizi</option>
+                            <option>Bordj Bou Arreridj</option><option>Boumerdès</option><option>El Tarf</option>
+                            <option>Tindouf</option><option>Tissemsilt</option><option>El Oued</option>
+                            <option>Khenchela</option><option>Souk Ahras</option><option>Tipaza</option>
+                            <option>Mila</option><option>Aïn Defla</option><option>Naâma</option>
+                            <option>Aïn Témouchent</option><option>Ghardaïa</option><option>Relizane</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Type de robe *</label>
+                        <select id="sm_type" required>
+                            <option value="">Choisir un modèle</option>
+                            <option>Robe Kabyle traditionnelle</option>
+                            <option>Robe Kabyle moderne</option>
+                            <option>Robe de mariée Kabyle</option>
+                            <option>Robe de soirée Kabyle</option>
+                            <option>Autre (préciser en détails)</option>
+                        </select>
+                    </div>
+
+                    <div class="measurement-title">📏 VOS MENSURATIONS (en cm)</div>
+
+                    <div class="field">
+                        <label>Tour de poitrine</label>
+                        <input type="number" id="sm_poitrine" placeholder="Ex : 90" min="0">
+                    </div>
+                    <div class="field">
+                        <label>Tour de taille</label>
+                        <input type="number" id="sm_taille" placeholder="Ex : 70" min="0">
+                    </div>
+                    <div class="field">
+                        <label>Tour de hanches</label>
+                        <input type="number" id="sm_hanches" placeholder="Ex : 95" min="0">
+                    </div>
+                    <div class="field">
+                        <label>Longueur souhaitée</label>
+                        <input type="number" id="sm_longueur" placeholder="Ex : 140" min="0">
+                    </div>
+
+                    <div class="field full">
+                        <label>Couleur(s) souhaitée(s) *</label>
+                        <input type="text" id="sm_couleur" placeholder="Ex : vert émeraude et doré" required>
+                    </div>
+                    <div class="field full">
+                        <label>Tissu préféré</label>
+                        <input type="text" id="sm_tissu" placeholder="Ex : satin, velours, soie...">
+                    </div>
+                    <div class="field full">
+                        <label>Détails supplémentaires / Inspiration</label>
+                        <textarea id="sm_details" placeholder="Décrivez votre projet, la date de l'événement, vos préférences..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">💬 ENVOYER MA DEMANDE SUR WHATSAPP</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>CONTACTEZ-NOUS</h2>
+        <p>Commandez facilement vos robes directement via WhatsApp.</p>
+        <a href="https://wa.me/213794020017" class="btn" target="_blank">💬 CONTACTER SUR WHATSAPP</a>
+
+        <div class="contact-social">
+            <p>📲 Suivez-nous également sur nos réseaux :</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/1LADUz4RX5/" target="_blank" class="fb">
+                    <span class="social-icon">📘</span> Facebook
+                </a>
+                <a href="instagram://user/?username=mk.robes&utm_source=qr" target="_blank" class="ig">
+                    <span class="social-icon">📸</span> Instagram
+                </a>
+                <a href="https://www.tiktok.com/@robespmix3s?_r=1&_t=ZS-99X9JVUcxns" target="_blank" class="tt">
+                    <span class="social-icon">🎵</span> TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2026 MK ROBES KABYLE — Tous droits réservés</footer>
+
+    <div class="overlay" id="overlay" onclick="closeCart()"></div>
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>MON PANIER</h2>
+            <button class="close-cart" onclick="closeCart()">×</button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <strong>TOTAL :</strong>
+            <strong id="cartTotal">0 DA</strong>
+        </div>
+        <button class="checkout-btn" onclick="orderWhatsApp()">FINALISER MA COMMANDE</button>
+    </div>
+
+    <div class="order-modal" id="orderModal">
+        <div class="order-box">
+            <div class="order-header">
+                <div>
+                    <small>MK ROBES KABYLE</small>
+                    <h2>FINALISER MA COMMANDE</h2>
+                </div>
+                <button class="close-order" onclick="closeOrderForm()">×</button>
+            </div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Nom et prénom *</label>
+                    <input type="text" id="customerName" placeholder="Votre nom complet" required />
+                </div>
+                <div class="form-group">
+                    <label>Numéro de téléphone *</label>
+                    <input type="tel" id="customerPhone" placeholder="0555 12 34 56" required />
+                </div>
+                <div class="form-group">
+                    <label>Wilaya *</label>
+                    <select id="customerWilaya" required>
+                        <option value="">Sélectionnez votre wilaya</option>
+                        <option>Adrar</option><option>Chlef</option><option>Laghouat</option>
+                        <option>Oum El Bouaghi</option><option>Batna</option><option>Béjaïa</option>
+                        <option>Biskra</option><option>Béchar</option><option>Blida</option>
+                        <option>Bouira</option><option>Tamanrasset</option><option>Tébessa</option>
+                        <option>Tlemcen</option><option>Tiaret</option><option>Tizi Ouzou</option>
+                        <option>Alger</option><option>Djelfa</option><option>Jijel</option>
+                        <option>Sétif</option><option>Saïda</option><option>Skikda</option>
+                        <option>Sidi Bel Abbès</option><option>Annaba</option><option>Guelma</option>
+                        <option>Constantine</option><option>Médéa</option><option>Mostaganem</option>
+                        <option>M'Sila</option><option>Mascara</option><option>Ouargla</option>
+                        <option>Oran</option><option>El Bayadh</option><option>Illizi</option>
+                        <option>Bordj Bou Arreridj</option><option>Boumerdès</option><option>El Tarf</option>
+                        <option>Tindouf</option><option>Tissemsilt</option><option>El Oued</option>
+                        <option>Khenchela</option><option>Souk Ahras</option><option>Tipaza</option>
+                        <option>Mila</option><option>Aïn Defla</option><option>Naâma</option>
+                        <option>Aïn Témouchent</option><option>Ghardaïa</option><option>Relizane</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Adresse de livraison *</label>
+                    <textarea id="customerAddress" placeholder="Commune, quartier, rue..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Informations supplémentaires</label>
+                    <textarea id="customerNote" placeholder="Exemple : taille souhaitée..."></textarea>
+                </div>
+                <div class="order-summary">
+                    <h3>RÉSUMÉ DE LA COMMANDE</h3>
+                    <div id="orderProducts"></div>
+                    <div class="order-final-total">
+                        <span>TOTAL</span>
+                        <strong id="orderTotal">0 DA</strong>
+                    </div>
+                </div>
+                <button type="submit" class="confirm-order">CONFIRMER LA COMMANDE 💬</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-modal" id="loginModal">
+        <div class="login-box">
+            <h2>🔐 Accès Admin</h2>
+            <p>Veuillez saisir le mot de passe pour gérer le catalogue.</p>
+            <input type="password" id="loginPassword" placeholder="Mot de passe" autocomplete="off" />
+            <button class="btn" onclick="attemptLogin()">SE CONNECTER</button>
+            <div class="error-msg" id="loginError">❌ Mot de passe incorrect</div>
+        </div>
+    </div>
+
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙️ ADMIN</button>
+    <a href="https://wa.me/213794020017" class="whatsapp-float" target="_blank">💬</a>
+
+    <script>
+        // ============================================================
+        // 0. AUTHENTIFICATION
+        // ============================================================
+        let adminPassword = localStorage.getItem('mk_admin_password') || 'mkadmin';
+        let isAuthenticated = false;
+
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginError').classList.remove('show');
+            setTimeout(() => document.getElementById('loginPassword').focus(), 100);
+        }
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+        function attemptLogin() {
+            const input = document.getElementById('loginPassword');
+            const error = document.getElementById('loginError');
+            if (input.value === adminPassword) {
+                isAuthenticated = true;
+                hideLoginModal();
+                document.getElementById('adminPanel').classList.add('active');
+                renderAdmin();
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+        document.getElementById('loginPassword').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); attemptLogin(); }
+        });
+        function changePassword() {
+            if (!isAuthenticated) return;
+            const input = document.getElementById('newPassword');
+            const newPwd = input.value.trim();
+            if (!newPwd) { alert('Veuillez entrer un nouveau mot de passe.'); return; }
+            if (newPwd === adminPassword) { alert('Le nouveau mot de passe est identique à l\'ancien.'); return; }
+            adminPassword = newPwd;
+            localStorage.setItem('mk_admin_password', adminPassword);
+            input.value = '';
+            alert('✅ Mot de passe mis à jour avec succès !');
+        }
+
+        // ============================================================
+        // 1. BASE DE COULEURS (nom → code hex)
+        // ============================================================
+        const COLOR_MAP = {
+            'noir': '#000000',
+            'black': '#000000',
+            'blanc': '#ffffff',
+            'white': '#ffffff',
+            'rouge': '#e63946',
+            'red': '#e63946',
+            'bordeaux': '#7b1e2b',
+            'rose': '#ff9eb5',
+            'pink': '#ff9eb5',
+            'fuchsia': '#e91e63',
+            'orange': '#ff8c42',
+            'jaune': '#ffd700',
+            'yellow': '#ffd700',
+            'doré': '#c9a35b',
+            'dore': '#c9a35b',
+            'gold': '#c9a35b',
+            'vert': '#2e8b57',
+            'green': '#2e8b57',
+            'vert clair': '#7ed957',
+            'vert foncé': '#1b4d3e',
+            'vert emeraude': '#0e9f6e',
+            'émeraude': '#0e9f6e',
+            'olive': '#6b8e23',
+            'bleu': '#2563eb',
+            'blue': '#2563eb',
+            'bleu ciel': '#87ceeb',
+            'bleu marine': '#1e3a5f',
+            'turquoise': '#40e0d0',
+            'cyan': '#00bcd4',
+            'violet': '#8b5cf6',
+            'purple': '#8b5cf6',
+            'mauve': '#b784c9',
+            'lilas': '#c8a2c8',
+            'marron': '#7b4b1e',
+            'brown': '#7b4b1e',
+            'beige': '#f5deb3',
+            'crème': '#fffdd0',
+            'creme': '#fffdd0',
+            'gris': '#808080',
+            'gray': '#808080',
+            'grey': '#808080',
+            'argent': '#c0c0c0',
+            'silver': '#c0c0c0',
+            'argenté': '#c0c0c0',
+            'kaki': '#8b8b3b',
+            'brique': '#a0522d',
+            'corail': '#ff7f50',
+            'saumon': '#fa8072',
+            'ivoire': '#fffff0',
+            'champagne': '#f7e7ce',
+            'taupe': '#483c32'
+        };
+
+        // Palette de secours si la couleur n'est pas reconnue
+        const FALLBACK_COLORS = ['#c9a35b','#8b5cf6','#e63946','#2e8b57','#2563eb','#ff8c42','#e91e63','#1e3a5f','#7b4b1e','#ffd700'];
+
+        function getColorHex(name) {
+            if (!name) return '#888888';
+            const key = name.toString().toLowerCase().trim()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            // Essai exact
+            for (const k in COLOR_MAP) {
+                const kNorm = k.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (kNorm === key) return COLOR_MAP[k];
+            }
+            // Essai partiel
+            for (const k in COLOR_MAP) {
+                const kNorm = k.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (key.includes(kNorm) || kNorm.includes(key)) return COLOR_MAP[k];
+            }
+            // Fallback stable basé sur le hash du texte
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            return FALLBACK_COLORS[Math.abs(hash) % FALLBACK_COLORS.length];
+        }
+
+        // ============================================================
+        // 2. DONNÉES PRODUITS
+        // ============================================================
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 1,
+                name: 'Robe Kabyle',
+                price: 6900,
+                image: 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg',
+                promo: false,
+                colors: ['Vert', 'Bleu', 'Rouge', 'Noir']
+            },
+            {
+                id: 2,
+                name: 'Robe Kabyle 2',
+                price: 6900,
+                image: 'https://i.ibb.co/Ld9s9YYP/Messenger-creation-1749773962810621.jpg',
+                promo: false,
+                colors: ['Bleu', 'Doré', 'Blanc', 'Rose']
+            },
+            {
+                id: 3,
+                name: 'Robe Kabyle Premium',
+                price: 13000,
+                image: 'https://i.ibb.co/S7GP4tbV/Messenger-creation-3229412453925610.jpg',
+                promo: true,
+                oldPrice: 15000,
+                colors: ['Rouge', 'Émeraude', 'Violet', 'Doré', 'Noir']
+            }
+        ];
+        let products = loadProducts();
+
+        // Sélection courante des couleurs par produit
+        let selectedColors = {};
+
+        function loadProducts() {
+            try {
+                const stored = localStorage.getItem('mk_products');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        // S'assurer que chaque produit a un tableau colors
+                        parsed.forEach(p => {
+                            if (!Array.isArray(p.colors)) p.colors = [];
+                        });
+                        return parsed;
+                    }
+                }
+            } catch (_) {}
+            return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+        }
+
+        function saveProductsToStorage() {
+            try {
+                localStorage.setItem('mk_products', JSON.stringify(products));
+                return true;
+            } catch (e) {
+                console.error('Erreur sauvegarde:', e);
+                alert('⚠️ Mémoire pleine ! Utilisez plutôt des liens imgbb.com pour les photos.');
+                return false;
+            }
+        }
+
+        function getNextId() {
+            if (products.length === 0) return 1;
+            return Math.max(...products.map(p => p.id)) + 1;
+        }
+
+        // ============================================================
+        // 3. IMPORT PHOTO (iPhone + Android)
+        // ============================================================
+        function handleImageUpload(event, index) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('❌ Veuillez sélectionner une image.');
+                return;
+            }
+
+            const preview = document.getElementById(`admin_preview_${index}`);
+            if (preview) preview.style.opacity = '0.5';
+
+            const reader = new FileReader();
+
+            reader.onerror = function() {
+                alert('❌ Erreur de lecture du fichier. Réessayez.');
+                if (preview) preview.style.opacity = '1';
+            };
+
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onerror = function() {
+                    alert('❌ Impossible de lire cette image.');
+                    if (preview) preview.style.opacity = '1';
+                };
+                img.onload = function() {
+                    const MAX_WIDTH = 700;
+                    const MAX_HEIGHT = 900;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > MAX_WIDTH) {
+                        height = Math.round((height * MAX_WIDTH) / width);
+                        width = MAX_WIDTH;
+                    }
+                    if (height > MAX_HEIGHT) {
+                        width = Math.round((width * MAX_HEIGHT) / height);
+                        height = MAX_HEIGHT;
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, width, height);
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressed = canvas.toDataURL('image/jpeg', 0.75);
+
+                    const urlInput = document.getElementById(`admin_image_${index}`);
+                    if (urlInput) urlInput.value = '';
+                    if (preview) {
+                        preview.src = compressed;
+                        preview.style.opacity = '1';
+                    }
+                    products[index].image = compressed;
+
+                    if (saveProductsToStorage()) {
+                        showSaveMsg('📷 Photo importée avec succès !');
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ============================================================
+        // 4. RENDU PRODUITS (avec sélection couleur)
+        // ============================================================
+        function renderProducts() {
+            const container = document.getElementById('productList');
+            container.innerHTML = '';
+            if (products.length === 0) {
+                container.innerHTML = `<p style="text-align:center;color:#777;grid-column:1/-1;">Aucun produit disponible.</p>`;
+                return;
+            }
+
+            products.forEach((p) => {
+                // Initialiser la couleur sélectionnée par défaut
+                if (!selectedColors[p.id] && p.colors && p.colors.length > 0) {
+                    selectedColors[p.id] = p.colors[0];
+                }
+
+                const promoHTML = p.promo ? `<div class="promo">PROMOTION</div>` : '';
+                const priceHTML = p.promo
+                    ? `<span class="old-price">${(p.oldPrice || 0).toLocaleString('fr-FR')} DA</span>
+                       <span class="new-price">${p.price.toLocaleString('fr-FR')} DA</span>`
+                    : `${p.price.toLocaleString('fr-FR')} DA`;
+
+                // Construction des boutons de couleur
+                let colorsHTML = '';
+                if (p.colors && p.colors.length > 0) {
+                    const selected = selectedColors[p.id] || p.colors[0];
+                    let btns = '';
+                    p.colors.forEach(color => {
+                        const hex = getColorHex(color);
+                        const isSelected = color === selected;
+                        btns += `
+                            <button type="button" 
+                                    class="color-btn ${isSelected ? 'selected' : ''}"
+                                    style="background:${hex};"
+                                    data-color="${color.replace(/"/g, '&quot;')}"
+                                    data-product="${p.id}"
+                                    onclick="selectColor(${p.id}, '${color.replace(/'/g, "\\'")}')"
+                                    title="${color.replace(/"/g, '&quot;')}"
+                                    aria-label="${color.replace(/"/g, '&quot;')}">
+                            </button>
+                        `;
+                    });
+
+                    colorsHTML = `
+                        <div class="color-section">
+                            <span class="color-label">COULEUR :</span>
+                            <div class="color-options">${btns}</div>
+                            <span class="selected-color-name" id="selected-color-${p.id}">
+                                Couleur choisie : <strong>${selected}</strong>
+                            </span>
+                        </div>
+                    `;
+                }
+
+                const div = document.createElement('article');
+                div.className = 'product';
+                div.innerHTML = `
+                    <div class="product-image">${promoHTML}<img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <div class="price">${priceHTML}</div>
+                        ${colorsHTML}
+                        <button class="add-cart" onclick="addToCart(${p.id})">🛒 AJOUTER AU PANIER</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Sélection d'une couleur
+        function selectColor(productId, colorName) {
+            selectedColors[productId] = colorName;
+
+            // Mettre à jour la classe visuelle des boutons
+            document.querySelectorAll(`.color-btn[data-product="${productId}"]`).forEach(btn => {
+                if (btn.dataset.color === colorName) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+
+            // Mettre à jour le texte
+            const txt = document.getElementById(`selected-color-${productId}`);
+            if (txt) txt.innerHTML = `Couleur choisie : <strong>${colorName}</strong>`;
+        }
+
+        // ============================================================
+        // 5. RENDU ADMIN
+        // ============================================================
+        function renderAdmin() {
+            if (!isAuthenticated) return;
+            const container = document.getElementById('adminProducts');
+            container.innerHTML = '';
+            if (products.length === 0) {
+                container.innerHTML = `<p style="text-align:center;color:#777;padding:20px;">Aucun produit. Cliquez sur "Ajouter" pour en créer.</p>`;
+                return;
+            }
+            products.forEach((p, index) => {
+                const div = document.createElement('div');
+                div.className = 'admin-product';
+
+                const isBase64 = p.image.startsWith('data:image');
+                const imageValue = isBase64 ? '' : p.image;
+                const colorsValue = (p.colors || []).join(', ');
+
+                div.innerHTML = `
+                    <div>
+                        <label>NOM</label>
+                        <input type="text" id="admin_name_${index}" value="${p.name.replace(/"/g, '&quot;')}" />
+                    </div>
+                    <div>
+                        <label>PRIX (DA)</label>
+                        <input type="number" id="admin_price_${index}" value="${p.price}" step="100" min="0" />
+                    </div>
+                    <div>
+                        <label>IMAGE (URL imgbb ou photo importée)</label>
+                        <input type="text" id="admin_image_${index}" value="${imageValue}" placeholder="Collez un lien imgbb" />
+                        <input type="file" id="admin_file_${index}" accept="image/*" style="display:none;" onchange="handleImageUpload(event, ${index})" />
+                        <button type="button" class="btn" style="margin-top:8px;padding:10px 14px;font-size:12px;width:100%;" onclick="document.getElementById('admin_file_${index}').click()">
+                            📷 Choisir une photo
+                        </button>
+                        <div style="margin-top:8px;">
+                            <img class="preview-img" src="${p.image}" alt="aperçu" id="admin_preview_${index}" />
+                        </div>
+                    </div>
+                    <div style="align-self:end;padding-bottom:4px;display:flex;flex-direction:column;gap:8px;">
+                        <label style="display:inline-flex;align-items:center;gap:8px;color:#aaa;font-size:13px;">
+                            <input type="checkbox" id="admin_promo_${index}" ${p.promo ? 'checked' : ''} />
+                            Promo
+                        </label>
+                        <div style="display:${p.promo ? 'flex' : 'none'};gap:10px;align-items:center;" id="admin_oldPriceWrap_${index}">
+                            <label style="font-size:11px;color:#777;">Ancien prix</label>
+                            <input type="number" id="admin_oldPrice_${index}" value="${p.oldPrice || 0}" step="100" min="0" style="width:100px;" />
+                        </div>
+                        <button class="delete-btn" onclick="deleteProduct(${p.id})">🗑️ Supprimer</button>
+                    </div>
+                    <div style="grid-column: 1 / -1;">
+                        <label>🎨 COULEURS DISPONIBLES (séparées par des virgules)</label>
+                        <input type="text" id="admin_colors_${index}" 
+                               value="${colorsValue.replace(/"/g, '&quot;')}" 
+                               placeholder="Ex : Vert, Bleu, Rouge, Noir, Doré" />
+                        <small style="display:block;color:#666;font-size:11px;margin-top:4px;">
+                            Laissez vide si la robe n'a qu'une seule couleur. Les noms français courants (rouge, bleu, vert, doré, noir...) donnent une pastille automatique.
+                        </small>
+                    </div>
+                `;
+                container.appendChild(div);
+
+                const promoCheck = document.getElementById(`admin_promo_${index}`);
+                const oldWrap = document.getElementById(`admin_oldPriceWrap_${index}`);
+                promoCheck.addEventListener('change', () => {
+                    oldWrap.style.display = promoCheck.checked ? 'flex' : 'none';
+                });
+
+                const urlField = document.getElementById(`admin_image_${index}`);
+                urlField.addEventListener('input', () => {
+                    const val = urlField.value.trim();
+                    const prev = document.getElementById(`admin_preview_${index}`);
+                    if (val && !val.startsWith('data:image')) {
+                        prev.src = val;
+                    }
+                });
+            });
+        }
+
+        // ============================================================
+        // 6. CRUD
+        // ============================================================
+        function addProduct() {
+            if (!isAuthenticated) return;
+            products.push({
+                id: getNextId(),
+                name: 'Nouvelle Robe',
+                price: 6900,
+                image: 'https://i.ibb.co/qLhRvS8z/Messenger-creation-1639606944248333.jpg',
+                promo: false,
+                colors: ['Rouge', 'Bleu', 'Noir']
+            });
+            if (saveProductsToStorage()) {
+                renderProducts();
+                renderAdmin();
+                showSaveMsg('✅ Nouveau produit ajouté !');
+            }
+        }
+
+        function deleteProduct(id) {
+            if (!isAuthenticated) return;
+            if (!confirm('Supprimer définitivement ce produit ?')) return;
+            products = products.filter(p => p.id !== id);
+            cart = cart.filter(item => item.productId !== id);
+            delete selectedColors[id];
+            saveProductsToStorage();
+            renderProducts();
+            renderAdmin();
+            updateCart();
+            showSaveMsg('🗑️ Produit supprimé.');
+        }
+
+        function saveProducts() {
+            if (!isAuthenticated) return;
+
+            for (let i = 0; i < products.length; i++) {
+                const nameEl = document.getElementById(`admin_name_${i}`);
+                const priceEl = document.getElementById(`admin_price_${i}`);
+                const imageEl = document.getElementById(`admin_image_${i}`);
+                const promoEl = document.getElementById(`admin_promo_${i}`);
+                const oldPriceEl = document.getElementById(`admin_oldPrice_${i}`);
+                const colorsEl = document.getElementById(`admin_colors_${i}`);
+
+                if (!nameEl || !priceEl || !imageEl) continue;
+
+                const name = nameEl.value.trim();
+                const price = parseInt(priceEl.value) || 0;
+                const imageInput = imageEl.value.trim();
+                const promo = promoEl.checked;
+
+                let image = products[i].image;
+                if (imageInput && !imageInput.startsWith('data:image')) {
+                    image = imageInput;
+                }
+
+                // Traitement des couleurs
+                let colors = [];
+                if (colorsEl) {
+                    colors = colorsEl.value
+                        .split(',')
+                        .map(c => c.trim())
+                        .filter(c => c.length > 0);
+                }
+
+                products[i].name = name || 'Robe Kabyle';
+                products[i].price = price;
+                products[i].image = image;
+                products[i].promo = promo;
+                products[i].oldPrice = promo ? (parseInt(oldPriceEl.value) || 0) : null;
+                products[i].colors = colors;
+
+                // Réinitialiser la couleur sélectionnée si elle n'est plus valide
+                if (selectedColors[products[i].id] && !colors.includes(selectedColors[products[i].id])) {
+                    delete selectedColors[products[i].id];
+                }
+            }
+
+            if (saveProductsToStorage()) {
+                renderProducts();
+                renderAdmin();
+                if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+                showSaveMsg('✅ Modifications enregistrées !');
+            }
+        }
+
+        function resetProducts() {
+            if (!isAuthenticated) return;
+            if (confirm('Réinitialiser tous les produits aux valeurs par défaut ? (vos photos importées seront perdues)')) {
+                products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+                selectedColors = {};
+                saveProductsToStorage();
+                renderProducts();
+                renderAdmin();
+                if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+                cart = [];
+                updateCart();
+                showSaveMsg('↺ Réinitialisé avec succès !');
+            }
+        }
+
+        function showSaveMsg(text) {
+            const msg = document.getElementById('saveMsg');
+            msg.textContent = text;
+            msg.classList.add('show');
+            setTimeout(() => {
+                msg.classList.remove('show');
+                msg.textContent = '✅ Modifications enregistrées !';
+            }, 3000);
+        }
+
+        // ============================================================
+        // 7. PANIER (avec couleur)
+        // ============================================================
+        let cart = [];
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) { alert('Ce produit n\'existe plus.'); return; }
+
+            // Récupérer la couleur sélectionnée
+            let color = null;
+            if (product.colors && product.colors.length > 0) {
+                color = selectedColors[productId] || product.colors[0];
+            }
+
+            // Vérifier si ce produit + cette couleur existe déjà dans le panier
+            const existing = cart.find(item => item.productId === productId && item.color === color);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    color: color,
+                    quantity: 1
+                });
+            }
+            updateCart();
+            openCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            cartItems.innerHTML = '';
+            let total = 0, count = 0;
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide 🛒</div>';
+            }
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                count += item.quantity;
+                const colorLine = item.color
+                    ? `<div class="cart-color">Couleur : <strong>${item.color}</strong></div>`
+                    : '';
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" />
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>${item.price.toLocaleString('fr-FR')} DA × ${item.quantity}</p>
+                            ${colorLine}
+                        </div>
+                        <button class="remove" onclick="removeFromCart(${index})">Supprimer</button>
+                    </div>
+                `;
+            });
+            cartCount.textContent = count;
+            cartTotal.textContent = total.toLocaleString('fr-FR') + ' DA';
+        }
+
+        function openCart() {
+            document.getElementById('cartPanel').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+        function closeCart() {
+            document.getElementById('cartPanel').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // ============================================================
+        // 8. COMMANDE WHATSAPP
+        // ============================================================
+        function orderWhatsApp() {
+            if (cart.length === 0) { alert('Votre panier est vide.'); return; }
+            closeCart();
+            openOrderForm();
+        }
+
+        function openOrderForm() {
+            const modal = document.getElementById('orderModal');
+            const orderProducts = document.getElementById('orderProducts');
+            const orderTotal = document.getElementById('orderTotal');
+            orderProducts.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const productTotal = item.price * item.quantity;
+                total += productTotal;
+                const colorLine = item.color
+                    ? `<span class="op-color">🎨 Couleur : ${item.color}</span>`
+                    : '';
+                orderProducts.innerHTML += `
+                    <div class="order-product">
+                        <div>
+                            <span class="op-name">${item.name} × ${item.quantity}</span>
+                            ${colorLine}
+                        </div>
+                        <strong>${productTotal.toLocaleString('fr-FR')} DA</strong>
+                    </div>
+                `;
+            });
+            orderTotal.textContent = total.toLocaleString('fr-FR') + ' DA';
+            modal.classList.add('active');
+        }
+
+        function closeOrderForm() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const wilaya = document.getElementById('customerWilaya').value;
+            const address = document.getElementById('customerAddress').value;
+            const note = document.getElementById('customerNote').value;
+            let total = 0;
+            let message = '👑 *NOUVELLE COMMANDE - MK ROBES KABYLE*\n\n';
+            message += `👤 *Client :* ${name}\n📱 *Téléphone :* ${phone}\n📍 *Wilaya :* ${wilaya}\n🏠 *Adresse :* ${address}\n\n`;
+            message += '🛒 *Produits commandés :*\n\n';
+            cart.forEach(item => {
+                const productTotal = item.price * item.quantity;
+                total += productTotal;
+                message += `• ${item.name} × ${item.quantity}`;
+                if (item.color) message += ` (Couleur : ${item.color})`;
+                message += ` = ${productTotal.toLocaleString('fr-FR')} DA\n`;
+            });
+            message += `\n💰 *TOTAL : ${total.toLocaleString('fr-FR')} DA*\n`;
+            if (note) message += `\n📝 *Informations supplémentaires :* ${note}`;
+            const url = 'https://wa.me/213794020017?text=' + encodeURIComponent(message);
+            window.open(url, '_blank');
+        });
+
+        // ============================================================
+        // 9. FORMULAIRE SUR MESURE
+        // ============================================================
+        document.getElementById('surmesureForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('sm_name').value.trim();
+            const phone = document.getElementById('sm_phone').value.trim();
+            const wilaya = document.getElementById('sm_wilaya').value;
+            const type = document.getElementById('sm_type').value;
+            const poitrine = document.getElementById('sm_poitrine').value;
+            const taille = document.getElementById('sm_taille').value;
+            const hanches = document.getElementById('sm_hanches').value;
+            const longueur = document.getElementById('sm_longueur').value;
+            const couleur = document.getElementById('sm_couleur').value.trim();
+            const tissu = document.getElementById('sm_tissu').value.trim();
+            const details = document.getElementById('sm_details').value.trim();
+
+            let message = '🧵 *DEMANDE DE ROBE SUR MESURE - MK ROBES KABYLE*\n\n';
+            message += `👤 *Client :* ${name}\n📱 *Téléphone :* ${phone}\n📍 *Wilaya :* ${wilaya}\n\n`;
+            message += `👗 *Type de robe :* ${type}\n🎨 *Couleur(s) :* ${couleur}\n`;
+            if (tissu) message += `🧶 *Tissu :* ${tissu}\n`;
+            message += '\n📏 *MENSURATIONS (cm) :*\n';
+            if (poitrine) message += `• Poitrine : ${poitrine} cm\n`;
+            if (taille) message += `• Taille : ${taille} cm\n`;
+            if (hanches) message += `• Hanches : ${hanches} cm\n`;
+            if (longueur) message += `• Longueur : ${longueur} cm\n`;
+            if (details) message += `\n📝 *Détails :*\n${details}\n`;
+            message += '\nMerci ! 🙏';
+
+            const url = 'https://wa.me/213794020017?text=' + encodeURIComponent(message);
+            window.open(url, '_blank');
+            this.reset();
+        });
+
+        // ============================================================
+        // 10. ADMIN TOGGLE
+        // ============================================================
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                isAuthenticated = false;
+                return;
+            }
+            showLoginModal();
+        }
+
+        // ============================================================
+        // 11. MENU MOBILE
+        // ============================================================
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // ============================================================
+        // 12. INITIALISATION
+        // ============================================================
+        renderProducts();
+        updateCart();
+        if (products.length > 0) document.getElementById('heroImage').src = products[0].image;
+
+        console.log('🔧 Admin prêt - Mot de passe par défaut : mkadmin');
+    </script>
+</body>
+</html>
